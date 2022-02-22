@@ -1,20 +1,21 @@
+
 // Déffinition des variables
 var scores = [0, 0];
 var scoreRound = 0;
-var playerActive = 1;
+var playerActive = 0;
 var gameActive = true;
 var resultatDe;
 
 // initialisation du DOM
 function playeGame() {
   //joueur 1
-  document.querySelector('#playerName1').textContent = 'Player 1';
+  document.querySelector('#playerName0').textContent = 'Joueur 1';
+  document.querySelector('#scorePlayer0').textContent = '0';
+  document.querySelector('#current0').textContent = '0';
+  //joueur 2
+  document.querySelector('#playerName1').textContent = 'Joueur 2';
   document.querySelector('#scorePlayer1').textContent = '0';
   document.querySelector('#current1').textContent = '0';
-  //joueur 2
-  document.querySelector('#playerName2').textContent = 'Player 2';
-  document.querySelector('#scorePlayer2').textContent = '0';
-  document.querySelector('#current2').textContent = '0';
   // affichage du dé
   document.querySelector('#resultatDe').style.display = 'none';
 }
@@ -36,6 +37,8 @@ document.querySelector('#btnRoll').addEventListener('click', function () {
       scoreRound += resultatDe;
       document.querySelector('#current' + playerActive).textContent = scoreRound;
     } else {
+      var exampleModal = new bootstrap.Modal(document.getElementById('scoreNullModal'))
+      exampleModal.show()
       nextPlayer();
     }
   }
@@ -54,13 +57,17 @@ document.querySelector('#btnHold').addEventListener('click', function () {
       nextPlayer();
     }
   }
-  console.log()
 });
 // joueur suivant
 function nextPlayer() {
-  playerActive === 1 ? playerActive = 2 : playerActive = 1;
+  playerActive === 0 ? playerActive = 1 : playerActive = 0;
   scoreRound = 0;
+  document.querySelector('#current0').textContent = '0';
   document.querySelector('#current1').textContent = '0';
-  document.querySelector('#current2').textContent = '0';
   document.querySelector('#resultatDe').style.display = 'none';
 }
+// appel du modal regles
+window.addEventListener('load', function () {
+  var exampleModal = new bootstrap.Modal(document.getElementById('reglesModal'))
+  exampleModal.show()
+})
