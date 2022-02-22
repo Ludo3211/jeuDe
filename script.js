@@ -51,8 +51,10 @@ document.querySelector('#btnHold').addEventListener('click', function () {
     scores[playerActive] += scoreRound;
     document.querySelector('#scorePlayer' + playerActive).textContent = scores[playerActive];
 
-    if (scores[playerActive] >= 100) {
+    if (scores[playerActive] >= 30) {
       document.querySelector('#resultatDe').style.display = 'none';
+      document.querySelector('#playerName' + playerActive).firstChild.data = 'WINNER';
+      gameActive = false;
     } else {
       nextPlayer();
     }
@@ -65,6 +67,8 @@ function nextPlayer() {
   document.querySelector('#current0').textContent = '0';
   document.querySelector('#current1').textContent = '0';
   document.querySelector('#resultatDe').style.display = 'none';
+  document.querySelector('#playerName0').classList.toggle('active')
+  document.querySelector('#playerName1').classList.toggle('active')
 }
 // appel du modal regles
 window.addEventListener('load', function () {
