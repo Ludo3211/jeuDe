@@ -52,7 +52,7 @@ document.querySelector('#btnHold').addEventListener('click', function () {
     scores[playerActive] += scoreRound;
     document.querySelector('#scorePlayer' + playerActive).textContent = scores[playerActive];
 
-    if (scores[playerActive] >= 10) {
+    if (scores[playerActive] >= 100) {
       document.querySelector('#resultatDe').style.display = 'none';
       document.querySelector('#playerName' + playerActive).firstChild.data = 'WINNER';
       gameActive = false;
