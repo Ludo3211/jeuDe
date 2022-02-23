@@ -18,13 +18,15 @@ function playeGame() {
   document.querySelector('#current1').textContent = '0';
   // affichage du dé
   document.querySelector('#resultatDe').style.display = 'none';
+  // Suppression de WINNER en fin de partie
+  document.querySelector('#playerName' + playerActive).remove.firstChild
+
 }
 playeGame();
 
-
-// Nouvelle partie
-document.querySelector('#btnNewGame').addEventListener('click', playeGame);
-
+document.querySelector('#btnNewGame').addEventListener('click', function () {
+  window.location.reload()
+});
 // control des évenements
 // lancer le dé
 document.querySelector('#btnRoll').addEventListener('click', function () {
@@ -45,13 +47,12 @@ document.querySelector('#btnRoll').addEventListener('click', function () {
 });
 
 // Charger les points
-
 document.querySelector('#btnHold').addEventListener('click', function () {
   if (gameActive) {
     scores[playerActive] += scoreRound;
     document.querySelector('#scorePlayer' + playerActive).textContent = scores[playerActive];
 
-    if (scores[playerActive] >= 30) {
+    if (scores[playerActive] >= 10) {
       document.querySelector('#resultatDe').style.display = 'none';
       document.querySelector('#playerName' + playerActive).firstChild.data = 'WINNER';
       gameActive = false;
@@ -60,6 +61,7 @@ document.querySelector('#btnHold').addEventListener('click', function () {
     }
   }
 });
+
 // joueur suivant
 function nextPlayer() {
   playerActive === 0 ? playerActive = 1 : playerActive = 0;
@@ -70,6 +72,7 @@ function nextPlayer() {
   document.querySelector('#playerName0').classList.toggle('active')
   document.querySelector('#playerName1').classList.toggle('active')
 }
+
 // appel du modal regles
 window.addEventListener('load', function () {
   var exampleModal = new bootstrap.Modal(document.getElementById('reglesModal'))
